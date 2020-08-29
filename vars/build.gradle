@@ -1,0 +1,23 @@
+apply plugin: 'groovy'
+apply from: "${rootDir}/gradle/dependencies.gradle"
+apply plugin: 'java'
+
+sourceSets {
+    vars {
+        groovy {
+            compileClasspath += main.compileClasspath
+        }
+    }
+}
+
+repositories {
+    maven { url = "http://repo.jenkins-ci.org/releases" }
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+}
+
+dependencies {
+    implementation groovy
+    implementation jenkinsCore
+}

@@ -1,0 +1,96 @@
+apply plugin: 'groovy'
+apply plugin: 'de.undercouch.download'
+
+sourceSets {
+    seeds {
+        groovy {
+            srcDirs 'scripts'
+            compileClasspath += main.compileClasspath
+        }
+        resources {
+            srcDirs 'resources'
+        }
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+repositories {
+    maven { url = "http://repo.jenkins-ci.org/releases" }
+    jcenter()
+    mavenLocal()
+}
+
+configurations {
+    testPlugins
+}
+
+// Exclude buggy Xalan dependency this way the JRE default TransformerFactory is used
+// The xalan pulled in by htmlunit does not properly deal with spaces folder / job names
+configurations.all*.exclude group: 'xalan'
+
+apply from: "${rootDir}/gradle/dependencies.gradle"
+
+dependencies {
+    implementation groovy
+    implementation jobDslCore
+    implementation jaxb // for compilation with java9
+
+    testImplementation spock
+    testImplementation cglib // used by Spock
+
+    // Jenkins test harness dependencies
+    testImplementation jenkinsWar
+    testImplementation(jenkinsTestHarness) {
+        exclude group: 'org.netbeans.modules', module: 'org-netbeans-insane'
+    }
+
+    // Job DSL plugin including plugin dependencies
+    testImplementation jobDsl
+    // plugins to install in test instance
+    testPlugins jenkinsPlugins
+    // for the RestApiScriptRunner
+    implementation apacheAnt
+    // for the RestApiScriptRunner
+    implementation(httpBuilder) {
+        exclude(module: 'groovy')
+    }
+}
+
+task resolveTestPlugins(type: Copy) {
+    from configurations.testPlugins
+    into new File(sourceSets.test.output.resourcesDir, 'test-dependencies')
+    include '*.hpi'
+    include '*.jpi'
+    def mapping = [:]
+
+    doFirst {
+        destinationDir.mkdirs()
+        configurations.testPlugins.resolvedConfiguration.resolvedArtifacts.each {
+            mapping[it.file.name] = "${it.name}.${it.extension}"
+        }
+        download {
+            src jenkinsPluginsHpis
+            dest destinationDir
+        }
+    }
+    rename { mapping[it] }
+
+    doLast {
+        List<String> baseNames = (
+                source*.name.collect { mapping[it] } + jenkinsPluginsHpis.collect { it.split("/").last() }
+        ).collect { it[0..it.lastIndexOf('.') - 1] }
+
+        new File(destinationDir, 'index').setText(baseNames.join('\n'), 'UTF-8')
+    }
+}
+
+test {
+    dependsOn tasks.resolveTestPlugins
+    inputs.files sourceSets.seeds.groovy.srcDirs
+
+    // set build directory for Jenkins test harness, JENKINS-26331
+    systemProperty 'buildDirectory', project.buildDir.absolutePath
+
+    testLogging.showStandardStreams = true
+}

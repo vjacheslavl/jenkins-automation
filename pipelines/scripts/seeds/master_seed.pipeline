@@ -1,0 +1,36 @@
+#!groovy
+package seeds
+
+import hudson.scm.ChangeLogSet
+import hudson.triggers.SCMTrigger.SCMTriggerCause
+
+stage('Generate jobs and views') {
+    node("") {
+
+        def scmVars = checkout scm
+        String branch = scmVars.GIT_BRANCH.replace("origin/", "")
+
+        println "Checking out seed jobs from '${branch}'"
+
+        gitCheckout repository: '/qa/jenkins-automation', branch: branch
+
+        boolean triggeredByScm = currentBuild.rawBuild.causes.any { it instanceof SCMTriggerCause }
+        boolean seedChanges = currentBuild.changeSets.any { ChangeLogSet changeLogSet ->
+            changeLogSet.any { ChangeLogSet.Entry entry -> entry.affectedPaths.any { it.matches('^seeds/.*') } }
+        }
+
+        if (triggeredByScm && !seedChanges) {
+            println "No changes in seed job scripts. Skipping job generation."
+            return
+        }
+
+        gradleWrapper tasks: ['clean', ':seeds:jar']
+        dir('seeds') {
+            jobDsl targets: 'scripts/**/*seed.groovy',
+                    removedJobAction: 'DELETE',
+                    removedViewAction: 'DELETE',
+                    additionalClasspath: 'build/libs/seeds.jar',
+                    unstableOnDeprecation: true
+        }
+    }
+}

@@ -1,0 +1,68 @@
+jenkins:
+  globalNodeProperties:
+    - envVars:
+        env:
+          - key: JENKINS_DEBUG_MODE
+            value: true
+          - key: GIT_SERVER
+            value: dummy.git
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "InfluxDB"
+              username: "some-user"
+              password: "some-password"
+              description: "Dummy influx credentials"
+#global libraries have unclassified root https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/jenkins/jenkins.yaml
+unclassified:
+  globalLibraries:
+    libraries:
+      - name: "shared-libs"
+        defaultVersion: "master"
+        implicit: true
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "/qa/jenkins-automation"
+tool:
+  jdk:
+    installations:
+      - name: "openjdk-11"
+        properties:
+          - installSource:
+              installers:
+                - zip:
+                    subdir: "jdk-11.0.1"
+                    url: "https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz"
+  xvfbInstallation:
+    installations:
+      - name: "xvfb"
+#pre generate master-seed job
+jobs:
+  - script: >
+      pipelineJob('master-seed') {
+          description "This job generates all other jobs"
+          definition {
+              cpsScm {
+                  scm {
+                      git {
+                          branch "*/master"
+                          remote {
+                              url "/qa/jenkins-automation"
+                          }
+                          extensions {
+                              cloneOptions {
+                                  shallow()
+                                  noTags()
+                              }
+                          }
+                      }
+                  }
+                  scriptPath "pipelines/scripts/seeds/master_seed.pipeline"
+              }
+          }
+      }

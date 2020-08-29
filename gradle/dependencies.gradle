@@ -1,0 +1,85 @@
+ext {
+    // core dependencies
+    jobDslVersion = "1.77"
+    jenkinsVersion = "2.222"
+    testHarnessVersion = '2.67'
+    groovyVersion = '2.5.1'
+    spockVersion = '1.3-groovy-2.5'
+    cglibVersion = '3.2.7'
+    httpBuilderVersion = '0.7.2'
+    antVersion = '1.10.5'
+    structsVersion = '1.14'
+    jaxbVersion = '2.3.0'
+
+    //plugins
+    buildMonitorVersion = '1.12+build.201805070054'
+    cloudbeesFolderVersion = '6.5.1'
+    credentialsVersion = '2.1.16'
+    workflowVersion = '2.5'
+    gitVersion = '3.9.1'
+    jobFiltersVersion = '1.27'
+    gitlabVersion = '1.5.9'
+    envInjectVersion = '2.1.6'
+    pipelineVersion = '1.3.1'
+    buildBlockerVersion = '1.7.3'
+    matrixProjectVersion = '1.13'
+    allureVersion = '2.27.0'
+    wsCleanupVersion = '0.34'
+    buildTimeoutVersion = '1.19'
+    scriptSecurityVersion = '1.44'
+    groovyPostbuildVersion = '2.4.1'
+    xvfbVersion = '1.1.4-beta-1'
+    configFileProviderVersion = '2.18'
+    naginatorVersion = '1.17.2'
+    postbuildscriptVersion = '2.7.0'
+    matrixSorterPluginVersion = '1.3'
+    workflowCpsPluginVersion = '2.54'
+    rundeckNotifierPluginVersion = '3.6.6'
+    throttleConcurrentsVersion = '2.0.2'
+
+    // dependency definition
+    groovy = "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    jenkinsCore = "org.jenkins-ci.main:jenkins-core:${jenkinsVersion}"
+    jobDslCore = "org.jenkins-ci.plugins:job-dsl-core:${jobDslVersion}"
+    spock = "org.spockframework:spock-core:${spockVersion}"
+    cglib = "cglib:cglib-nodep:${cglibVersion}"
+    httpBuilder = "org.codehaus.groovy.modules.http-builder:http-builder:${httpBuilderVersion}"
+    apacheAnt = "org.apache.ant:ant:${antVersion}"
+    jaxb = "javax.xml.bind:jaxb-api:${jaxbVersion}"
+    jenkinsTestHarness = "org.jenkins-ci.main:jenkins-test-harness:${testHarnessVersion}"
+    jenkinsWar = "org.jenkins-ci.main:jenkins-war:${jenkinsVersion}"
+
+    jobDsl = [
+            "org.jenkins-ci.plugins:job-dsl:${jobDslVersion}",
+            "org.jenkins-ci.plugins:job-dsl:${jobDslVersion}@jar",
+            "org.jenkins-ci.plugins:structs:${structsVersion}@jar"
+    ]
+    jenkinsPlugins = [
+            "org.jenkins-ci.plugins:cloudbees-folder:${cloudbeesFolderVersion}",
+            "org.jenkins-ci.plugins:credentials:${credentialsVersion}",
+            "org.jenkins-ci.plugins.workflow:workflow-aggregator:${workflowVersion}",
+            "org.jenkins-ci.plugins.workflow:workflow-cps:${workflowCpsPluginVersion}",
+            "org.jenkins-ci.plugins:git:${gitVersion}",
+            "org.jenkins-ci.plugins:view-job-filters:${jobFiltersVersion}",
+            "org.jenkins-ci.plugins:gitlab-plugin:${gitlabVersion}",
+            "org.jenkins-ci.plugins:envinject:${envInjectVersion}",
+            "org.jenkins-ci.plugins:pipeline-milestone-step:${pipelineVersion}",
+            "org.jenkins-ci.plugins:build-blocker-plugin:${buildBlockerVersion}",
+            "org.jenkins-ci.plugins:matrix-project:${matrixProjectVersion}",
+            "ru.yandex.qatools.allure:allure-jenkins-plugin:${allureVersion}",
+            "org.jenkins-ci.plugins:ws-cleanup:${wsCleanupVersion}",
+            "org.jenkins-ci.plugins:build-timeout:${buildTimeoutVersion}",
+            "org.jenkins-ci.plugins:script-security:${scriptSecurityVersion}",
+            "org.jvnet.hudson.plugins:groovy-postbuild:${groovyPostbuildVersion}",
+            "org.jenkins-ci.plugins:xvfb:${xvfbVersion}",
+            "org.jenkins-ci.plugins:config-file-provider:${configFileProviderVersion}",
+            "org.jenkins-ci.plugins:naginator:${naginatorVersion}",
+            "org.jenkins-ci.plugins:postbuildscript:${postbuildscriptVersion}",
+            "org.jenkins-ci.plugins:Matrix-sorter-plugin:${matrixSorterPluginVersion}",
+            "org.jenkins-ci.plugins:rundeck:${rundeckNotifierPluginVersion}",
+            "org.jenkins-ci.plugins:throttle-concurrents:${throttleConcurrentsVersion}"
+    ]
+    jenkinsPluginsHpis = [
+            "http://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/build-monitor-plugin/${buildMonitorVersion}/build-monitor-plugin-${buildMonitorVersion}.hpi"
+    ]
+}

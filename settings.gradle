@@ -1,0 +1,5 @@
+rootProject.name = 'jenkins-automation'
+
+include 'seeds'
+include 'pipelines'
+include 'vars'

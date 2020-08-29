@@ -1,0 +1,54 @@
+{
+  "testRunners": {
+    "job_trigger.pipeline": {
+      "trigger-smoke-tests-jobs": {
+        "jobNamePattern": "(Smoke).*",
+        "disabled": false,
+        "description": "Trigger Smoke Tests builds (seeds job)",
+        "cron": "H H(1-2) * * 1-5",
+        "name": "smoke_tests"
+      },
+      "trigger-regression-tests-jobs": {
+        "jobNamePattern": "(Regression).*",
+        "disabled": false,
+        "description": "Trigger Regression Tests builds (seeds job)",
+        "cron": "H H(4-5) * * 1-5",
+        "name": "regression_tests"
+      }
+    }
+  },
+  "testJobs": {
+    "test_job.pipeline": {
+      "Smoke_Phone": {
+        "systemProperties": {
+          "test": "MobileSmokeTests"
+        },
+        "disabled": false
+      },
+      "Smoke_Desktop": {
+        "systemProperties": {
+          "test": "DesktopSmokeTests"
+        },
+        "disabled": false
+      },
+      "Regression_Feature_1": {
+        "systemProperties": {
+          "test": "Feature_1"
+        },
+        "disabled": false
+      },
+      "Regression_Feature_2": {
+        "systemProperties": {
+          "test": "Feature_2"
+        },
+        "disabled": false
+      },
+      "Regression_Feature_23": {
+        "systemProperties": {
+          "test": "Feature_2"
+        },
+        "disabled": false
+      }
+    }
+  }
+}

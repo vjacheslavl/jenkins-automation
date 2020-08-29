@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  jenkins_master:
+    build:
+      context: ./master
+    container_name: master
+    ports:
+      - 8092:8080 #web port
+      - 50000:50000 #agent port
+    volumes:
+      - jenkins_master:/var/jenkins_master
+      - ./jenkins.yaml:/var/jenkins_master/jenkins.yaml
+      - ../../jenkins-automation:/qa/jenkins-automation
+    environment:
+      - CASC_JENKINS_CONFIG=/var/jenkins_master/jenkins.yaml
+  jenkins_slave:
+    image: eeacms/jenkins-slave
+    container_name: jenkins_slave
+    environment:
+      - JAVA_OPTS=-Xmx2048m
+      - JENKINS_MASTER=http://master:8080
+      - JENKINS_NAME=worker
+      - JENKINS_USER=admin
+      - JENKINS_PASS=admin
+      - JENKINS_RETRY=10
+      - JENKINS_DEBUG_MODE=true
+    volumes:
+      - ../../jenkins-automation:/qa/jenkins-automation
+volumes:
+  jenkins_master:

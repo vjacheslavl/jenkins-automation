@@ -1,0 +1,14 @@
+<p><strong>parallelize(list, body)</strong></p>
+
+<p>Execute tasks parallel. First argument are the parameters passed each time to the closure, which is the second argument</p>
+<pre>
+  <b>list</b>: parameters that are passed each time to closure
+  <b>body</b>: closure being executed
+
+  Usage example to trigger list of jobs in parallel
+  parallelize(jobs) { String jobName ->
+                Map jobParameters = [number: dynamicEnvironment.find("\\d+"), type: "${env.type}", artifactVersion: artifactVersion]
+                triggerJob(jobName, true, jobParameters)
+  }
+  Input parameters is list of jobNames and closure with execution logic which will be called with job name parameter from the list
+</pre>

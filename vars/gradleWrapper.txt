@@ -1,0 +1,12 @@
+<p><strong>gradleWrapper(Map args)</strong></p>
+
+<p>Simple gradlew shell command wrapper to be used when upload to artifactory is not needed</p>
+<pre>
+  <b>tasks</b>: list of tasks to pass for gradle build
+  <b>projectProperties</b>: map of project properties to pass for gradle build
+  <b>systemProperties</b>: map of system properties to pass for gradle build
+  <b>switches</b>: list of switches, will be added to default --no-daemon
+  <b>javaVersion</b>: Java version to be used
+  Example:
+  gradleWrapper tasks: ['clean', 'test'], systemProperties: [systemprop1: "systemprop1"], projectProperties: [projectprop1: "projectprop1"]
+</pre>

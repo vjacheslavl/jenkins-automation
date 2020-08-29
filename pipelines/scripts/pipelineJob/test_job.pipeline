@@ -1,0 +1,17 @@
+#!groovy
+package pipelineJob
+
+def baseProperties = readJSON text: env.systemProperties
+
+node("") {
+
+    Map systemProperties =  baseProperties
+
+    Closure testRunner = {
+        xvfb {
+                runGameTestsFromJar(systemProperties, artifactVersion)
+        }
+    }
+
+    runFunctionalTestsInSequence testStageName: "Run ${systemProperties.test}", testRunner: testRunner
+}
