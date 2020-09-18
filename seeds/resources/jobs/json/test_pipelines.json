@@ -18,7 +18,7 @@
     }
   },
   "testJobs": {
-    "test_job.pipeline": {
+    "mock_job.pipeline": {
       "Smoke_Phone": {
         "systemProperties": {
           "test": "MobileSmokeTests"

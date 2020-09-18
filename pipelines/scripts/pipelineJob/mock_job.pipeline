@@ -1,0 +1,13 @@
+#!groovy
+package pipelineJob
+
+node("") {
+
+    //mock job that randomly passes or fails
+    Random rand = new Random()
+    int random_num = rand.nextInt(2)
+
+    if (random_num == 0) {
+        error "Job failed"
+    }
+}
