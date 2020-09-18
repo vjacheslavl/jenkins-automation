@@ -43,9 +43,15 @@
         },
         "disabled": false
       },
-      "Regression_Feature_23": {
+      "User_Accounts_smoke": {
         "systemProperties": {
-          "test": "Feature_2"
+          "test": "userAccounts"
+        },
+        "disabled": false
+      },
+      "Payments_Smoke": {
+        "systemProperties": {
+          "test": "PaymentSmoke"
         },
         "disabled": false
       }
