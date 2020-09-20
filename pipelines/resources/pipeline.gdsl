@@ -197,6 +197,7 @@ contributor(ctx) {
     method(name: 'triggerJobsInParallel', type: 'Object', params: [jobNames: 'List', parameters: 'Map', transformBadge: 'Closure'], doc: 'Trigger list of jobs in parallel with common string params for all jobs with closure to transform displayed badge name')
     method(name: 'gradleWrapper', type: 'Object', namedParams: [parameter(name: 'tasks', type: 'java.util.List'), parameter(name: 'switches', type: 'java.util.List'), parameter(name: 'systemProperties', type: 'java.util.Map'), parameter(name: 'projectProperties', type: 'java.util.Map'), parameter(name: 'javaVersion', type: 'java.lang.String')], doc: 'Execute gradle job using gradle wrapper script')
     method(name: 'gitCheckout', type: 'Object', params: [repository: 'java.lang.String'], doc: 'Checkout git project master branch in root dir')
+    method(name: 'addGitLabBuild', type: 'Object', params: [name: 'java.lang.String', body:'Closure'], doc: 'Report job status to GitLab Merge Request')
 }
 //Steps that require a node context
 def nodeCtx = context(scope: closureScope())
