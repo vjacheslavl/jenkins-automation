@@ -3,7 +3,7 @@ package pipelineJob
 
 import jenkins.model.Jenkins
 
-final String jobNameP = params.jobPattern != '' ? params.jobPattern : env.jobNamePattern
+final String jobNameP = env.jobNamePattern
 
 List jobs = Jenkins.get().allItems
         .findAll { it.name.matches(jobNameP) && !it.disabled }
