@@ -67,6 +67,20 @@
           "test": "RegistrationSmoke"
         },
         "disabled": false
+      },
+      "BugRewards_Smoke": {
+        "displayName": "BugRewards",
+        "systemProperties": {
+          "test": "BugRewards"
+        },
+        "disabled": false
+      },
+      "Testing_Smoke": {
+        "displayName": "Testing",
+        "systemProperties": {
+          "test": "Testing"
+        },
+        "disabled": false
       }
     }
   }
