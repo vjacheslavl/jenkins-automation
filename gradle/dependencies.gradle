@@ -34,7 +34,6 @@ ext {
     postbuildscriptVersion = '2.7.0'
     matrixSorterPluginVersion = '1.3'
     workflowCpsPluginVersion = '2.54'
-    rundeckNotifierPluginVersion = '3.6.6'
     throttleConcurrentsVersion = '2.0.2'
 
     // dependency definition
@@ -76,7 +75,6 @@ ext {
             "org.jenkins-ci.plugins:naginator:${naginatorVersion}",
             "org.jenkins-ci.plugins:postbuildscript:${postbuildscriptVersion}",
             "org.jenkins-ci.plugins:Matrix-sorter-plugin:${matrixSorterPluginVersion}",
-            "org.jenkins-ci.plugins:rundeck:${rundeckNotifierPluginVersion}",
             "org.jenkins-ci.plugins:throttle-concurrents:${throttleConcurrentsVersion}"
     ]
     jenkinsPluginsHpis = [

@@ -34,7 +34,6 @@ generic-webhook-trigger
 ansicolor
 pipeline-utility-steps
 github
-rundeck
 groovy
 maven-plugin
 git-client
