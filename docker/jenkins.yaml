@@ -38,6 +38,15 @@ tool:
                 - zip:
                     subdir: "jdk-11.0.1"
                     url: "https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz"
+  maven:
+    installations:
+      - name: "apache-maven-3.2.5"
+        properties:
+          - installSource:
+              installers:
+                - zip:
+                    subdir: "apache-maven-3.2.5"
+                    url: "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.2.5/apache-maven-3.2.5-bin.tar.gz"
   xvfbInstallation:
     installations:
       - name: "xvfb"
