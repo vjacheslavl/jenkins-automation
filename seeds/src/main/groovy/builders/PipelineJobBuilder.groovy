@@ -9,7 +9,7 @@ import static utils.DslComponents.pipelineScm
 class PipelineJobBuilder {
 
     String jobName
-    String cron
+    String cronExpression
     String jobDisplayName
     String jenkinsFile
     String additionalDescription = ""
@@ -31,12 +31,12 @@ class PipelineJobBuilder {
             }
             disabled jobDisabled
             environmentVariables envVars
-            if (cron) {
+            if (cronExpression) {
                 properties {
                     pipelineTriggers {
                         triggers {
                             cron {
-                                spec cron
+                                spec cronExpression
                             }
                         }
                     }

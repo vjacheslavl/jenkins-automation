@@ -22,7 +22,7 @@ pipelineScript.testRunners.each { String jenkinsFile, Map pipelines ->
                 jenkinsFile: "pipelines/scripts/pipelineJob/$jenkinsFile",
                 jobDisabled: params.disabled,
                 envVars: environmentVariables,
-                cron: params.cron,
+                cronExpression: params.cron,
                 daysToKeepBuilds: 31,
                 buildsNumToKeep: 50
         ).build(this).with {

@@ -2,7 +2,7 @@
   "testRunners": {
     "job_trigger.pipeline": {
       "trigger-smoke-tests-jobs": {
-        "jobNamePattern": "(Smoke).*",
+        "jobNamePattern": ".*(Smoke)",
         "disabled": false,
         "description": "Trigger Smoke Tests builds (seeds job)",
         "cron": "H H(1-2) * * 1-5",
@@ -19,13 +19,13 @@
   },
   "testJobs": {
     "mock_job.pipeline": {
-      "Smoke_Phone": {
+      "Phone_Smoke": {
         "systemProperties": {
           "test": "MobileSmokeTests"
         },
         "disabled": false
       },
-      "Smoke_Desktop": {
+      "Desktop_Smoke": {
         "systemProperties": {
           "test": "DesktopSmokeTests"
         },
@@ -43,7 +43,7 @@
         },
         "disabled": false
       },
-      "User_Accounts_smoke": {
+      "User_Accounts_Smoke": {
         "systemProperties": {
           "test": "userAccounts"
         },
@@ -52,6 +52,12 @@
       "Payments_Smoke": {
         "systemProperties": {
           "test": "PaymentSmoke"
+        },
+        "disabled": false
+      },
+      "Registration_Smoke": {
+        "systemProperties": {
+          "test": "RegistrationSmoke"
         },
         "disabled": false
       }
