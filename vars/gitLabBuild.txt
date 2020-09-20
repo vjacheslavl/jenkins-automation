@@ -1,0 +1,13 @@
+<p><strong>gitLabBuild(name, body)</strong></p>
+
+<p>Wrap your code into this function to report job status to GitLab Merge Request</p>
+<p>On the build failure comment will be added to MR</p>
+<pre>
+  <b>name</b>: name of how the job will be displayed in GitLab plugin
+  <b>body</b>: closure being executed
+
+  Usage example
+  gitLabBuild("smoke tests") {
+     //your pipeline code here
+  }
+</pre>
