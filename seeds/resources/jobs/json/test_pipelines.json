@@ -20,42 +20,49 @@
   "testJobs": {
     "mock_job.pipeline": {
       "Phone_Smoke": {
+        "displayName": "Phone",
         "systemProperties": {
           "test": "MobileSmokeTests"
         },
         "disabled": false
       },
       "Desktop_Smoke": {
+        "displayName": "Smoke",
         "systemProperties": {
           "test": "DesktopSmokeTests"
         },
         "disabled": false
       },
       "Regression_Feature_1": {
+        "displayName": "Feature_1",
         "systemProperties": {
           "test": "Feature_1"
         },
         "disabled": false
       },
       "Regression_Feature_2": {
+        "displayName": "Feature_2",
         "systemProperties": {
           "test": "Feature_2"
         },
         "disabled": false
       },
       "User_Accounts_Smoke": {
+        "displayName": "User Accounts",
         "systemProperties": {
           "test": "userAccounts"
         },
         "disabled": false
       },
       "Payments_Smoke": {
+        "displayName": "Payments",
         "systemProperties": {
           "test": "PaymentSmoke"
         },
         "disabled": false
       },
       "Registration_Smoke": {
+        "displayName": "Registration",
         "systemProperties": {
           "test": "RegistrationSmoke"
         },

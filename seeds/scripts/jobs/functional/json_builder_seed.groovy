@@ -25,11 +25,7 @@ pipelineScript.testRunners.each { String jenkinsFile, Map pipelines ->
                 cronExpression: params.cron,
                 daysToKeepBuilds: 31,
                 buildsNumToKeep: 50
-        ).build(this).with {
-            parameters {
-                stringParam("jobPattern", "", "Job names pattern to trigger (empty = default)")
-            }
-        }
+        ).build(this);
 
         new BuildMonitorViewBuilder(viewName: params."name")
                 .buildWithRegex(this, params.jobNamePattern)
@@ -41,6 +37,7 @@ pipelineScript.testJobs.each { String jenkinsFile, Map jobs ->
 
         new PipelineJobBuilder(
                 jobName: jobName,
+                jobDisplayName: params.displayName,
                 jenkinsFile: "pipelines/scripts/pipelineJob/$jenkinsFile",
                 daysToKeepBuilds: 31,
                 buildsNumToKeep: 15,
