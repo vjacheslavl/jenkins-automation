@@ -40,7 +40,11 @@ Vars module contains reusable library functions (global vars)
     └── foo.txt             # Docs for global 'foo' library
     
 ## Local jenkins setup
-Installing Jenkins locally for development purpose,
+Installing Jenkins locally for development purpose
+
+! please note that script security is disabled locally using permissive-script-security plugin
+Still warnings from script security are displayed in console logs of your pipelines
+In production use the scripts still has to be approved by administrators of Jenkins 
 
 ### Start
 ```bash
