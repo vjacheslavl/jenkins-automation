@@ -1,0 +1,11 @@
+<p><strong>maven(List goals, List configurations, Map systemProperties, String pomFile = 'pom.xml')</strong></p>
+<p><strong>maven(List goals, Map systemProperties)</strong></p>
+<p><strong>maven(List goals)</strong></p>
+
+<p>Execute maven build</p>
+<pre>
+  <b>goals</b>: list of maven goals to execute
+  <b>configuration</b>: list of configuration passable to maven, like profiles
+  <b>systemProperties</b>: list of system properties to pass to maven build
+  <b>pomFile</b>: pom.xml file name, default to pom.xml in current directory
+</pre>

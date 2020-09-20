@@ -1,15 +1,15 @@
 #!groovy
 package pipelineJob
 
-def baseProperties = readJSON text: env.systemProperties
+Map baseProperties = readJSON text: env.systemProperties
 
 node("") {
 
-    Map systemProperties =  baseProperties
 
     Closure testRunner = {
+        gitCheckout repository: 'qa/test'
         xvfb {
-                runGameTestsFromJar(systemProperties, artifactVersion)
+            maven(["clean", "verify"], baseProperties)
         }
     }
 
