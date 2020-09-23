@@ -23,8 +23,6 @@ List call(List jobNames, Map parameters, Closure transformBadge = { String text 
 private List triggerJobs(List jobNames, Closure jobTrigger, Closure transformBadge) {
     List builds = []
     parallelize(jobNames) { String jobName ->
-        env.JAVA_HOME = "${tool 'openjdk-11'}"
-        env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         def buildd = jobTrigger(jobName)
         builds.add(buildd)
         echo("Build ${buildd.getFullDisplayName()} finished with status ${buildd.result}")
