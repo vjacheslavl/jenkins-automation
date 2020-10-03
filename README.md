@@ -6,6 +6,9 @@ Conjoined project for jenkins pipeline management using [job-dsl-plugin](https:/
 for job logic definition using scripted pipelines.   
 Project supports code completion of job-dsl scripts and pipeline scripts in IntelliJ IDEA. Just import project as gradle project using gradle wrapper.   
 
+## Running all tests
+`./gradlew clean check` 
+
 ## File structure of pipelines
 Pipeline module contains all of scripted jenkins files
 
@@ -32,13 +35,19 @@ Seeds module contains seed jobs for creating jenkins pipeline jobs as well as so
 will loop through all DSL files and make sure they don't throw any exceptions when processed. All XML output files are written to `build/debug-xml`. 
 This can be useful if you want to inspect the generated XML before check-in.
 
-## File structure of vars
-Vars module contains reusable library functions (global vars)
+## Shared libraries
 
-    .
-    ├── foo.bar             # Global 'foo' library
-    └── foo.txt             # Docs for global 'foo' library
-    
+https://www.jenkins.io/doc/book/pipeline/shared-libraries/
+
+`./gradlew :check` - runs shared library unit tests
+
+    .      
+    ├── src                     # Groovy source files
+    ├── test                    # Unit tests   
+    └── vars                    # Reusable library functions (global vars)
+        ├── foo.bar             # Global 'foo' library   
+        └── foo.txt             # Docs for global 'foo' library
+
 ## Local jenkins setup
 Installing Jenkins locally for development purpose
 
