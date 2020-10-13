@@ -37,6 +37,9 @@ Seeds module contains seed jobs for creating jenkins pipeline jobs as well as so
 will loop through all DSL files and make sure they don't throw any exceptions when processed. All XML output files are written to `build/debug-xml`. 
 This can be useful if you want to inspect the generated XML before check-in.
 
+Tests are using jenkins test harness
+- https://www.jenkins.io/doc/developer/testing/
+
 ## Shared libraries
 
 https://www.jenkins.io/doc/book/pipeline/shared-libraries/
