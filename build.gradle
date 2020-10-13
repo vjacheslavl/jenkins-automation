@@ -47,11 +47,7 @@ dependencies {
     testRuntime 'org.objenesis:objenesis:3.0.1'
     testCompile 'junit:junit:4.12'
     testRuntime 'org.junit.vintage:junit-vintage-engine:5.4.1'
-    testCompile 'com.lesfurets:jenkins-pipeline-unit:1.1'
-}
-
-compileGroovy {
-    groovyOptions.forkOptions.jvmArgs = ['-Dgroovy.grape.enable=false']
+    testCompile 'com.lesfurets:jenkins-pipeline-unit:1.8'
 }
 
 test {
