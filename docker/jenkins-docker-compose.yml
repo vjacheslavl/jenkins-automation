@@ -1,22 +1,22 @@
 version: '3.3'
 
 services:
-  jenkins_master:
+  jenkins_controller:
     build:
-      context: ./master
-    container_name: master
+      context: ./controller
+    container_name: jenkins_controller
     ports:
       - 8092:8080 #web port
       - 50000:50000 #agent port
     volumes:
-      - jenkins_master:/var/jenkins_master
-      - ./jenkins.yaml:/var/jenkins_master/jenkins.yaml
+      - jenkins_controller:/var/jenkins_controller
+      - ./jenkins.yaml:/var/jenkins_controller/jenkins.yaml
       - ../../jenkins-automation:/qa/jenkins-automation
     environment:
-      - CASC_JENKINS_CONFIG=/var/jenkins_master/jenkins.yaml
+      - CASC_JENKINS_CONFIG=/var/jenkins_controller/jenkins.yaml
   jenkins_slave:
-    image: eeacms/jenkins-slave
-    container_name: jenkins_slave
+    image: eeacms/jenkins-slave  #will be renamed to jenkins-agent soon
+    container_name: jenkins_agent
     environment:
       - JAVA_OPTS=-Xmx2048m
       - JENKINS_MASTER=http://master:8080
@@ -28,4 +28,4 @@ services:
     volumes:
       - ../../jenkins-automation:/qa/jenkins-automation
 volumes:
-  jenkins_master:
+  jenkins_controller:
