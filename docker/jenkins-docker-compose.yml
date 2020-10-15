@@ -19,7 +19,8 @@ services:
     container_name: jenkins_agent
     environment:
       - JAVA_OPTS=-Xmx2048m
-      - JENKINS_MASTER=http://master:8080
+      - JENKINS_MASTER=http://jenkins_controller:8080
+      - JENKINS_LABELS=simple_agent
       - JENKINS_NAME=worker
       - JENKINS_USER=admin
       - JENKINS_PASS=admin

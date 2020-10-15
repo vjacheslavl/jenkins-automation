@@ -10,6 +10,12 @@ import javaposse.jobdsl.dsl.DslFactory
                 cron {
                     spec "0 9 * * 4"
                 }
+                hudsonStartupTrigger {
+                    nodeParameterName("master")
+                    label("master")
+                    quietPeriod("0")
+                    runOnChoice("False")
+                }
             }
         }
     }

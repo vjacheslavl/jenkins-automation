@@ -55,6 +55,18 @@ jobs:
   - script: >
       pipelineJob('master-seed') {
           description "This job generates all other jobs"
+          properties {
+              pipelineTriggers {
+                  triggers {
+                      hudsonStartupTrigger {
+                          nodeParameterName("master")
+                          label("master")
+                          quietPeriod("0")
+                          runOnChoice("False")
+                      }
+                  }
+              }
+          }
           definition {
               cpsScm {
                   scm {
