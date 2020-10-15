@@ -1,0 +1,6 @@
+<p><strong>gitlabSimpleOrchestrator()</strong></p>
+
+<p>Simple implementation of Gitlab Comment Ops using Jenkins Gitlab Plugin</p>
+<pre>
+  env.gitlabTriggerPhrase contains comment from Gitlab Merge Request, that triggered the build
+</pre>
