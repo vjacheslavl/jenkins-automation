@@ -11,7 +11,12 @@ Just import project as gradle project using gradle wrapper.
 ## Pipelines DSL 
 Pipeline module contains all of scripted jenkins files
 
-    .   
+    .
+    ├── resources                   
+    │   └── pipeline.gdsl       #Groovy DSL script (GDSL) file. 
+    │                           #This can be downloaded from https://<Jenkins>/job/<Job Name>/pipeline-syntax/gdsl      
+    │                           #enables code completion in IDE for pipeline functions
+    │                           
     ├── scripts                 # Jenkins pipeline script files   
     └── build.gradle            # Build file   
 
@@ -60,7 +65,7 @@ https://github.com/macg33zr/pipelineUnit
 
 Uses Jenkins pipelineUnit - https://github.com/jenkinsci/JenkinsPipelineUnit
 
-## Setti up local jenkins in docker
+## Setting up local jenkins in docker
 Installing Jenkins locally for development purposes
 
 ! please note that script security is disabled locally using permissive-script-security plugin
