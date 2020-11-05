@@ -33,6 +33,13 @@
         },
         "disabled": false
       },
+      "AddAnother_Smoke": {
+        "displayName": "AnotherSmoke",
+        "systemProperties": {
+          "test": "DesktopSmokeTests"
+        },
+        "disabled": false
+      },
       "Regression_Feature_1": {
         "displayName": "Feature_1",
         "systemProperties": {
