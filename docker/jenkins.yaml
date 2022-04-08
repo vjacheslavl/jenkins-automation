@@ -47,9 +47,6 @@ tool:
                 - zip:
                     subdir: "apache-maven-3.2.5"
                     url: "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.2.5/apache-maven-3.2.5-bin.tar.gz"
-  xvfbInstallation:
-    installations:
-      - name: "xvfb"
 #pre generate master-seed job
 jobs:
   - script: >
