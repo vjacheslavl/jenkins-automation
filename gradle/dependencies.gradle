@@ -1,7 +1,7 @@
 ext {
     // core dependencies
     jobDslVersion = "1.77"
-    jenkinsVersion = "2.222"
+    jenkinsVersion = "2.332.2"
     testHarnessVersion = '2.67'
     groovyVersion = '2.5.1'
     spockVersion = '1.3-groovy-2.5'
