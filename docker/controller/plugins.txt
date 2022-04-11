@@ -25,7 +25,6 @@ pipeline-github-lib
 xvfb
 job-dsl
 jdk-tool
-build-monitor-plugin
 git-parameter
 postbuildscript
 monitoring

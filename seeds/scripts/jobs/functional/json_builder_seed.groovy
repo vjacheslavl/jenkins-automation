@@ -1,6 +1,5 @@
 package jobs.functional
 
-import builders.BuildMonitorViewBuilder
 import builders.PipelineJobBuilder
 
 import static groovy.json.JsonOutput.toJson
@@ -26,9 +25,6 @@ pipelineScript.testRunners.each { String jenkinsFile, Map pipelines ->
                 daysToKeepBuilds: 31,
                 buildsNumToKeep: 50
         ).build(this);
-
-        new BuildMonitorViewBuilder(viewName: params."name")
-                .buildWithRegex(this, params.jobNamePattern)
     }
 }
 
