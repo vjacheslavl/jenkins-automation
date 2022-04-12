@@ -16,7 +16,7 @@ sourceSets {
 }
 
 repositories {
-    maven { url = "http://repo.jenkins-ci.org/releases" }
+    maven { url = "https://repo.jenkins-ci.org/releases" }
     jcenter()
     mavenLocal()
 }
@@ -33,7 +33,9 @@ apply from: "${rootDir}/gradle/dependencies.gradle"
 
 dependencies {
     implementation groovy
-    implementation jobDslCore
+    implementation(jobDslCore) {
+        exclude module: 'xstream'
+    }
     implementation jaxb // for compilation with java9
 
     testImplementation spock
@@ -69,16 +71,12 @@ task resolveTestPlugins(type: Copy) {
         configurations.testPlugins.resolvedConfiguration.resolvedArtifacts.each {
             mapping[it.file.name] = "${it.name}.${it.extension}"
         }
-        download {
-            src jenkinsPluginsHpis
-            dest destinationDir
-        }
     }
     rename { mapping[it] }
 
     doLast {
         List<String> baseNames = (
-                source*.name.collect { mapping[it] } + jenkinsPluginsHpis.collect { it.split("/").last() }
+                source*.name.collect { mapping[it] }
         ).collect { it[0..it.lastIndexOf('.') - 1] }
 
         new File(destinationDir, 'index').setText(baseNames.join('\n'), 'UTF-8')
