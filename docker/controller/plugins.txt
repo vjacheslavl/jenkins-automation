@@ -51,8 +51,6 @@ jquery
 docker-slaves
 saml
 webhook-step
-swarm
-docker-swarm
 blueocean
 rebuild
 configuration-as-code
