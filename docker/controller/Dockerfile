@@ -5,7 +5,8 @@ ENV JENKINS_PASS admin
 
 # Skip initial setup
 # Disable script approval checks
-ENV JAVA_OPTS -Xmx2048m -Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true
+# Allow local git checkout
+ENV JAVA_OPTS -Xmx2048m -Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true
 
 
 COPY plugins.txt /usr/share/jenkins/plugins.txt
